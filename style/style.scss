@@ -1,55 +1,45 @@
+$nav-links-height: 50px;
+$section-height: calc(100vh - $nav-links-height * 4);
+$font-size: 26px;
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 *, *::before, *::after {
-  padding: 0;
-  margin: 0;
-  border: 0;
-  box-sizing: border-box;
+padding: 0;
+margin: 0;
+border: 0;
+box-sizing: border-box;
 }
 
-$nav-links-height: 50px;
-$main-height: calc(100% - #{$nav-links-height * 2});
-$font-size: 26px;
 
 body {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
+  display: grid;
+  grid-template-rows: 100px 1fr 100px;
+  min-height: 100vh;
   background-color: #fff;
   font-family: 'Poppins', sans-serif;
-  h3{
-    margin-bottom: 20px;
-  }
 
   header {
-    font-size: $font-size;
-    flex-basis: 100%;
-    max-height: 10%;
-    top: 0;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    background-color: #1a16f5;
+  font-size: $font-size;
+  color: #fff;
+  background-color: #1a16f5;
+  grid-row: 1 / 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   }
 
   section {
-    display: flex;
-    flex-wrap: wrap;
-    flex: 1;
+    display: grid;
+    grid-template-columns: 20% 1fr 20%;
+    grid-template-rows: $section-height;
+    grid-row: 2 / 3;
+
 
     nav {
-      flex-basis: 100%;
-      max-width: 20%;
       background-color: red;
       padding: 15px;
 
-      //rules for flex inside
-      display: flex;
-      flex-direction: column;
-
-      // navigation content
       p {
         margin: 10px 0;
         justify-content: center;
@@ -58,57 +48,59 @@ body {
     }
 
     .main {
-      flex-basis: 100%;
-      max-width: 60%;
       background-color: #fff;
       padding: 15px;
     }
 
     aside {
-      flex-basis: 100%;
-      max-width: 20%;
       background-color: purple;
       padding: 15px;
-    }
-
-    @media screen and (max-width: 730px) {
-      nav {
-        height: $nav-links-height;
-        max-width: 100%;
-        // for inner nav and links content
-        flex-direction: row;  
-        justify-content: space-around;
-        // fix for navigation content (still inner)
-        p {
-          margin: 0; 
-        }
-        h3{
-          display: none;
-        }
-      }
-
-        aside {
-        height: $nav-links-height;
-        max-width: 100%;
-      }
-
-      .main {
-        height: $main-height;
-        max-width: 100%;
-      }
     }
   }
 
   footer {
-    font-size: $font-size;
-    flex-basis: 100%;
-    max-height: 10%;
-    width: 100%;
-    bottom: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #2bac0b;
-    color: #fff;
+  font-size: $font-size;
+  color: #fff;
+  background-color: #2bac0b;
+  grid-row: 3 / 4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  }
+
+  @media screen and (max-width: 730px) {
+    section {
+      grid-template-columns: 1fr;
+      grid-template-rows: $nav-links-height calc($section-height - ($nav-links-height * 2)) $nav-links-height;
+    }
+  
+    nav {
+      height: $nav-links-height;
+      max-width: 100%;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: 1fr;
+      justify-items: center; /* горизонтальне центрування по колонках */
+      align-items: center; /* вертикальне центрування в середині рядка */
+      grid-column-gap: 5px;
+  
+      p {
+        margin: 0;
+      }
+  
+      h3 {
+        display: none;
+      }
+    }
+  
+    .main {
+      height: $section-height;
+      max-width: 100%;
+    }
+  
+    aside {
+      height: $nav-links-height;
+      max-width: 100%;
+    }
   }
 }
