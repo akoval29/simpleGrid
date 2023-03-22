@@ -1,4 +1,5 @@
 @import url("normalize.css");
+@import url("hamburger.css");
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 body {
   display: grid;
@@ -48,7 +49,7 @@ body footer {
   justify-content: center;
   align-items: center;
 }
-@media screen and (max-width: 730px) {
+@media screen and (max-width: 1000px) {
   body section {
     grid-template-columns: auto;
     grid-template-rows: 50px auto 50px;

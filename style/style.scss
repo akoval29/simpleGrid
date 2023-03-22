@@ -1,5 +1,7 @@
 @import url("normalize.css");
+@import url("hamburger.css");
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 
 $h: 50px;
 $fz: 26px;
@@ -58,7 +60,7 @@ body {
   align-items: center;
   }
 
-  @media screen and (max-width: 730px) {
+  @media screen and (max-width: 1000px) {
     section {
       grid-template-columns: auto;
       grid-template-rows: $h auto $h;

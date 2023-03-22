@@ -1,0 +1,125 @@
+$hamburger-width: 30px; // ширина гамбургера
+$hamburger-height: 24px; // висота гамбургера
+$hamburger-color: #000; // колір гамбургера
+
+.hamburger {
+  display: none; // початково не видимий
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 1000;
+  transition: opacity 0.5s ease-in-out;
+
+  &.open {
+    display: block; // показується при натисканні на гамбургер
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+    li {
+      margin: 20px 0;
+      font-size: 2em;
+      text-align: center;
+
+      a {
+        color: #fff;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: $hamburger-width;
+    height: $hamburger-height;
+    cursor: pointer;
+
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 100%;
+      height: 2px;
+      background: $hamburger-color;
+      transform: translateY(-50%);
+    }
+
+    &:before {
+      transform: rotate(45deg);
+    }
+
+    &:after {
+      transform: rotate(-45deg);
+    }
+  }
+}
+
+.hamburger-btn {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  width: $hamburger-width;
+  height: $hamburger-height;
+  cursor: pointer;
+  z-index: 1001;
+
+  span,
+  span:before,
+  span:after {
+    content: "";
+    position: absolute;
+    width: $hamburger-width;
+    height: 2px;
+    background: $hamburger-color;
+    transition: transform 0.5s ease-in-out;
+  }
+
+  span:before {
+    top: -10px;
+  }
+
+  span:after {
+    bottom: -10px;
+  }
+
+  &.open {
+    span {
+      transform: rotate(45deg);
+
+      &:before {
+        transform: rotate(90deg);
+        top: 0;
+      }
+
+      &:after {
+        transform: rotate(90deg);
+        bottom: 0;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .hamburger {
+    display: none;
+  }
+
+  .hamburger-menu {
+    display: block;
+  }
+}
